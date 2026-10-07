@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: higgsfield
+    runtime: python
+    pythonVersion: 3.11.0
+    rootDir: backend
+    buildCommand: |
+      pip install -r requirements.txt &&
+      cd ../frontend && npm install --legacy-peer-deps && npm run build
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: HF_API_KEY
+        sync: false
+      - key: HF_API_SECRET
+        sync: false
+      - key: HF_TOKEN
+        sync: false
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_TLDRAW_LICENSE_KEY
+        sync: false
+      - key: VITE_METERED_DOMAIN
+        sync: false
+      - key: VITE_METERED_API_KEY
+        sync: false
